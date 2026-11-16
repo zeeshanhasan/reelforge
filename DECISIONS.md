@@ -111,3 +111,33 @@ alternatives rejected, and the spec it came from.
 - **Why:** 16 GB is too tight to hold a local script model and the lip-sync model together.
 - **Rejected:** Running engines concurrently.
 - **Spec:** spec-00 (open question, section 9)
+
+### D-013 · No full-screen photoreal AI human; faceless reels first
+
+- **Date:** 2026-11-16
+- **Decision:** The full-screen photoreal AI human is a no-go. v1 builds faceless and
+  product-demo reels first. A face may return later through the AI-human adapter, as a small
+  corner presenter box, a stylised mascot, a consenting real person filmed once, or a paid
+  avatar service. Footage of real people taken from the internet is never used, for testing
+  or production.
+- **Why:** The spike passed on speed (40 to 55 s per 30 s clip) and stability, but the free
+  lip-sync mouth is visibly blurred and reads as AI. That is not acceptable for commercial
+  promotion. The faceless pipeline was proven the same day.
+- **Rejected:** Shipping the photoreal face full-screen; LatentSync as a rescue before
+  shipping anything (kept as a later option); stranger footage from the internet.
+- **Spec:** spec-01
+
+### D-014 · Captions drawn in the rendered scene
+
+- **Date:** 2026-11-16
+- **Decision:** Reels are rendered as HTML scenes in headless Chromium (Playwright), frame by
+  frame, and piped to ffmpeg for encoding and audio. Captions are part of the scene: the
+  on-screen text lights up word by word as it is spoken, and a 2 to 4 word strip appears only
+  for narration that is not on screen. Replaces the "captions as ASS subtitles" part of D-005;
+  ffmpeg still encodes and muxes.
+- **Why:** The Homebrew ffmpeg on these Macs has no `subtitles`/`ass` (or `drawtext`) filter.
+  Browser rendering gives the brand's real fonts and layouts, and rendered a 40 s reel in
+  49 s.
+- **Rejected:** Rebuilding ffmpeg with libass (setup burden on both Macs); a separate subtitle
+  strip that repeats the on-screen text.
+- **Spec:** spec-01 (found while prototyping the faceless reel)

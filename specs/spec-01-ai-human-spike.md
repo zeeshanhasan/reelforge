@@ -1,6 +1,6 @@
 # spec-01 · AI-human spike
 
-**Status:** Ready
+**Status:** In review
 **Milestone:** M0
 **Covers:** spec-00 section 4
 
@@ -87,4 +87,15 @@ None.
 
 ## Decisions made
 
-<Filled in at release.>
+- **No-go for a full-screen photoreal AI human** (D-013). Speed and stability passed (40 to
+  55 s per 30 s clip, four back to back without a crash). Quality failed: Zeeshan judged the
+  mouth visibly blurred and AI-looking, not acceptable for commercial promotion.
+- **v1 ships faceless and product-demo reels first** (D-013). Any face returns later through
+  the AI-human adapter: a small corner presenter box, a stylised mascot, a consenting real
+  person, or a paid service.
+- **No footage of real people taken from the internet**, for testing or production (D-013).
+- **Captions are drawn in the rendered scene, not burned in with ffmpeg subtitles** (D-014).
+  The installed ffmpeg has no `subtitles`/`ass` filter; the faceless prototype rendered with
+  headless Chromium instead.
+
+Full results: `docs/spike.md`. Licences: `docs/licences.md`.

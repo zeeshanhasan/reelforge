@@ -13,11 +13,11 @@ One render at a time because the M5 Air has no fan.
 browser (HTMX pages)  ──HTTP──▶  FastAPI app  ──▶  SQLite (topics, scripts, reels, jobs, ...)
                                      │
                                      └──▶  worker (one job at a time)
-                                              ├─ script engine   (Ollama by default)
+                                              ├─ script engine   (Claude or local model: open)
                                               ├─ voice engine    (mlx-audio + Kokoro)
                                               ├─ caption engine  (mlx-whisper word timings)
-                                              ├─ visual source   (AI human | demo capture | footage)
-                                              └─ assembler       (ffmpeg + ASS subtitles)
+                                              ├─ visual source   (scene templates | demo capture | later: a face)
+                                              └─ assembler       (HTML scenes in headless Chromium → ffmpeg)
 ```
 
 ## How one reel is made
@@ -43,10 +43,10 @@ Every engine sits behind a small interface with one default implementation.
 
 | Interface | Default | Alternatives (off by default) |
 | --- | --- | --- |
-| Script engine | Local model via Ollama | Hosted model with an API key |
+| Script engine | Open: Claude (chat, Claude Code batch or API) or a local model | The others |
 | Voice engine | mlx-audio with Kokoro | — |
-| Caption engine | mlx-whisper | — |
-| AI human | Decided by the spike (spec-01) | LatentSync MLX, real-person footage, paid avatar service |
+| Caption engine | mlx-whisper word timings, drawn in the scene (D-014) | — |
+| AI human | None in v1: the photoreal face was a no-go (D-013) | Later: corner presenter box, stylised mascot, consenting real person, paid avatar service |
 | Visual source | Per format: AI human, Playwright demo capture, background footage | Uploaded phone screen recording |
 
 ## Data

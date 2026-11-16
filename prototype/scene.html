@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: "Fraunces"; src: url(../content/brand/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Plex"; src: url(../content/brand/fonts/plex-sans-400.woff2) format("woff2"); font-weight: 400; }
+@font-face { font-family: "Plex"; src: url(../content/brand/fonts/plex-sans-500.woff2) format("woff2"); font-weight: 500; }
+@font-face { font-family: "Plex"; src: url(../content/brand/fonts/plex-sans-600.woff2) format("woff2"); font-weight: 600; }
+
+/* Prept brand, sampled from the social posts */
+:root {
+  --ground: #F5EFEA;
+  --card: #FFFFFF;
+  --green: #094B3E;
+  --logo: #0D5E4C;
+  --red: #C7462F;
+  --ink: #2B2D27;
+  --ink-2: #464740;
+  --ink-3: #8A8B84;
+  --blush: #F9E3DD;
+  --mint: #C2DED7;
+  --mint-soft: #E6F2EE;
+  --pill-pink: #F5B6A7;
+  --butter: #F3E5AF;
+  --highlight: #F5DEA8;
+  --pad: 72px;
+  --safe-right: 120px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+body { font-family: "Plex", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.stage { position: absolute; inset: 0; transform-origin: 50% 40%; }
+
+/* top bar */
+.topbar { position: absolute; top: 150px; left: var(--pad); right: var(--pad); display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 22px; }
+.logo .mark { width: 84px; height: 84px; border-radius: 18px; background: var(--logo); color: #fff; font-family: "Fraunces"; font-weight: 500; font-size: 56px; display: grid; place-items: center; }
+.logo .word { font-family: "Fraunces"; font-size: 60px; font-weight: 400; color: var(--green); letter-spacing: -0.5px; }
+.tag { background: var(--butter); color: var(--green); font-weight: 600; font-size: 28px; letter-spacing: 5px; padding: 18px 34px; border-radius: 999px; }
+
+.scene { position: absolute; left: var(--pad); right: var(--safe-right); top: 300px; bottom: 420px; display: flex; flex-direction: column; justify-content: center; }
+.serif { font-family: "Fraunces"; font-weight: 600; letter-spacing: -1.5px; line-height: 1.05; }
+.green { color: var(--green); }
+.red { color: var(--red); }
+
+/* word states */
+.w { border-radius: 10px; padding: 0 4px; margin: 0 -4px; transition: none; }
+.read .w.future { opacity: .32; }
+.read .w.current { background: var(--highlight); }
+.dark.read .w.future { opacity: .38; }
+.dark.read .w.current { background: none; color: var(--pill-pink); }
+.keep.past { background: var(--highlight); }
+.w.joined { border-top-right-radius: 0; border-bottom-right-radius: 0; margin-right: 0; padding-right: 0; }
+.w.joined + .w { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: 0; padding-left: 0; }
+.pop .w { display: inline-block; }
+
+/* hook */
+#hook .serif { font-size: 124px; }
+#hook .line { margin-bottom: 22px; }
+
+/* question */
+.qcard { background: var(--green); border-radius: 44px; padding: 70px 64px 76px; }
+.label { font-weight: 600; font-size: 28px; letter-spacing: 5px; text-transform: uppercase; }
+.qcard .label { color: var(--pill-pink); margin-bottom: 34px; }
+.qcard .quote { font-family: "Fraunces"; font-weight: 500; font-size: 84px; line-height: 1.12; color: #fff; letter-spacing: -1px; }
+
+/* answer cards */
+.acard { background: var(--card); border-radius: 44px; padding: 56px 56px 60px; box-shadow: 0 2px 0 rgba(9,75,62,.04), 0 24px 60px rgba(9,75,62,.07); display: flex; gap: 40px; }
+.tile { flex: none; width: 132px; height: 132px; border-radius: 28px; display: grid; place-items: center; font-family: "Fraunces"; font-weight: 500; font-size: 92px; }
+.tile.a { background: var(--blush); color: var(--red); }
+.tile.b { background: var(--mint); color: var(--green); }
+.acard .label { color: var(--ink-3); margin: 6px 0 22px; }
+.acard .quote { font-size: 52px; line-height: 1.38; color: var(--ink); }
+#answer_a .acard { margin-top: 0; }
+.verdict { margin-top: 90px; }
+.verdict .serif { font-size: 86px; margin-bottom: 14px; }
+.verdict .soft { color: var(--ink-2); }
+#answer_b .acard .quote { font-size: 48px; }
+#answer_b .acard { margin-top: 0; }
+
+/* why */
+#why .serif.big { font-size: 160px; }
+.reasons { margin-top: 70px; display: flex; flex-direction: column; gap: 26px; }
+.reason { background: var(--card); border-radius: 32px; padding: 38px 44px; display: flex; align-items: center; gap: 34px; box-shadow: 0 18px 50px rgba(9,75,62,.06); }
+.reason .num { flex: none; width: 76px; height: 76px; border-radius: 18px; background: var(--mint-soft); color: var(--green); font-family: "Fraunces"; font-size: 48px; display: grid; place-items: center; }
+.reason .t { font-weight: 600; font-size: 52px; color: var(--green); }
+.reason .s { font-size: 34px; color: var(--ink-2); margin-top: 6px; }
+
+/* cta */
+#cta .serif { font-size: 132px; }
+.tiles { display: flex; gap: 30px; align-items: center; margin-top: 60px; }
+.tiles .tile { width: 170px; height: 170px; font-size: 116px; border-radius: 36px; }
+.tiles .hint { font-weight: 600; font-size: 44px; color: var(--green); margin-left: 16px; }
+.band { margin-top: 70px; background: var(--green); border-radius: 44px; padding: 56px 56px 60px; }
+.band .l1 { color: #fff; font-weight: 600; font-size: 50px; line-height: 1.3; }
+.band .l2 { color: #fff; font-size: 46px; line-height: 1.3; opacity: .92; }
+.band .pill { display: inline-block; margin-top: 34px; background: var(--pill-pink); color: var(--green); font-weight: 600; font-size: 50px; padding: 20px 46px; border-radius: 999px; }
+
+/* fallback caption strip for any narration not shown on screen */
+.captions { position: absolute; left: var(--pad); right: var(--safe-right); top: 1400px; text-align: center; font-weight: 600; font-size: 64px; color: var(--green); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="topbar">
+    <div class="logo"><div class="mark">P</div><div class="word">Prept</div></div>
+    <div class="tag">YOU DECIDE</div>
+  </div>
+
+  <div class="scene" id="hook" data-beats="hook">
+    <div class="pop">
+      <div class="serif green line" data-bind>One interview question.</div>
+      <div class="serif green line" data-bind>Two answers.</div>
+      <div class="serif red line" data-bind>Only one gets the offer.</div>
+    </div>
+  </div>
+
+  <div class="scene" id="question" data-beats="question">
+    <div class="qcard dark read" data-enter="beat:question">
+      <div class="label">The question</div>
+      <div class="quote" data-bind>“Tell me about a time you disagreed with your manager.”</div>
+    </div>
+  </div>
+
+  <div class="scene" id="answer_a" data-beats="answer_a">
+    <div class="acard read" data-enter="beat:answer_a">
+      <div class="tile a">A</div>
+      <div>
+        <div class="label" data-bind>Answer A</div>
+        <div class="quote" data-bind>“I pushed back hard in the team meeting, and they agreed to wait.”</div>
+      </div>
+    </div>
+    <div class="verdict pop">
+      <div class="serif soft" data-bind>Sounds confident.</div>
+      <div class="serif red" data-bind>But it says you fight in public.</div>
+    </div>
+  </div>
+
+  <div class="scene" id="answer_b" data-beats="answer_b">
+    <div class="acard read" data-enter="beat:answer_b">
+      <div class="tile b">B</div>
+      <div>
+        <div class="label" data-bind>Answer B</div>
+        <div class="quote" data-bind data-keep="15 minutes one on one|showed the bugs|No rollbacks.">“Testing needed four weeks, not two. I asked for 15 minutes one on one, showed the bugs from our last rushed release, and we shipped the core on time. No rollbacks.”</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" id="why" data-beats="why">
+    <div class="serif green big pop" data-bind>B wins.</div>
+    <div class="reasons">
+      <div class="reason" data-enter="word:Specific,">
+        <div class="num">1</div>
+        <div><div class="t read" data-bind>Specific</div><div class="s">Four weeks, not two. 15 minutes, one on one.</div></div>
+      </div>
+      <div class="reason" data-enter="word:calm,">
+        <div class="num">2</div>
+        <div><div class="t read" data-bind>Calm</div><div class="s">A private ask, not a public fight.</div></div>
+      </div>
+      <div class="reason" data-enter="word:result.">
+        <div class="num">3</div>
+        <div><div class="t read" data-bind>Ends with a result</div><div class="s">Shipped on time. No rollbacks.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" id="cta" data-beats="cta">
+    <div class="serif green pop"><span data-bind>Which would</span> <span class="red" data-bind>you</span> <span data-bind>give?</span></div>
+    <div class="tiles" data-enter="word:Comment">
+      <div class="tile a">A</div><div class="tile b">B</div><div class="hint read" data-bind>Comment A or B</div>
+    </div>
+    <div class="band read" data-enter="beat:cta">
+      <div class="l1" data-bind>Practise yours out loud with Prept,</div>
+      <div class="l2" data-bind>and get a score out of 10.</div>
+      <div class="pill">prept.fyi</div>
+    </div>
+  </div>
+
+  <div class="captions" id="captions"></div>
+</div>
+
+<script>
+const NUM = { "10": "ten", "15": "fifteen" };
+const norm = s => { s = s.toLowerCase().replace(/[^a-z0-9]/g, ""); return NUM[s] || s; };
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const ease = p => 1 - Math.pow(1 - p, 3);
+let W, B, bound = new Set(), spans = [], enters = [], scenes = [], END;
+
+function beatOf(id) { return B.find(b => b.id === id); }
+
+// Pair each on-screen word with its spoken word, in order, within the scene's beat.
+function bindAll() {
+  for (const sc of document.querySelectorAll(".scene")) {
+    const beat = beatOf(sc.dataset.beats);
+    const beatFirst = W.findIndex(w => w.start >= beat.start - 0.05);
+    let cursor = beatFirst;
+    for (const el of sc.querySelectorAll("[data-bind]")) {
+      const keep = (el.dataset.keep || "").split("|").filter(Boolean).map(p => p.split(" ").map(norm));
+      const toks = el.textContent.trim().split(/\s+/);
+      el.textContent = "";
+      const made = [];
+      toks.forEach((tok, i) => {
+        const s = document.createElement("span");
+        s.className = "w"; s.textContent = tok;
+        el.append(s); if (i < toks.length - 1) el.append(" ");
+        // the first word of a line may sit anywhere in the beat (screen order can differ from
+        // spoken order); later words follow it, a few words ahead at most
+        const from = i === 0 ? beatFirst : cursor;
+        const span = i === 0 ? W.length : 4;
+        for (let k = from; k < Math.min(from + span, W.length); k++) {
+          if (i === 0 && bound.has(k)) continue;
+          if (W[k].start > beat.end + 0.2) break;
+          if (norm(W[k].w) === norm(tok)) { s.dataset.wi = k; bound.add(k); cursor = k + 1; break; }
+        }
+        made.push(s);
+      });
+      // phrases that keep the yellow highlight once spoken
+      for (const ph of keep) {
+        for (let i = 0; i + ph.length <= made.length; i++) {
+          if (ph.every((p, j) => norm(made[i + j].textContent) === p)) ph.forEach((_, j) => made[i + j].classList.add("keep"));
+        }
+      }
+      made.forEach((sp, i) => {
+        const nx = made[i + 1];
+        if (nx && sp.classList.contains("keep") && nx.classList.contains("keep") && sp.nextSibling && sp.nextSibling.nodeType === 3) {
+          sp.nextSibling.remove(); sp.textContent += " "; sp.classList.add("joined");
+        }
+      });
+      spans.push(...made);
+    }
+  }
+}
+
+function resolveAt(spec, sc) {
+  const [kind, val] = spec.split(":");
+  const beat = beatOf(sc.dataset.beats);
+  if (kind === "beat") return beatOf(val).start - 0.15;
+  const k = W.findIndex(w => w.start >= beat.start - 0.05 && w.w.toLowerCase() === val.toLowerCase());
+  return k >= 0 ? W[k].start - 0.1 : beat.start;
+}
+
+function init(data) {
+  W = data.words; B = data.beats; END = data.end;
+  bindAll();
+  scenes = [...document.querySelectorAll(".scene")].map((el, i, all) => {
+    const beat = beatOf(el.dataset.beats);
+    const next = all[i + 1] ? beatOf(all[i + 1].dataset.beats) : null;
+    return { el, tin: beat.start - 0.2, tout: next ? next.start - 0.2 : Infinity };
+  });
+  for (const el of document.querySelectorAll("[data-enter]")) {
+    enters.push({ el, at: resolveAt(el.dataset.enter, el.closest(".scene")) });
+  }
+  return { words: W.length, bound: bound.size, unbound: W.filter((_, k) => !bound.has(k)).map(w => w.w) };
+}
+
+function seek(t) {
+  for (const s of scenes) {
+    const fin = ease(clamp((t - s.tin) / 0.3, 0, 1));
+    const fout = 1 - clamp((t - (s.tout - 0.25)) / 0.25, 0, 1);
+    const o = Math.min(fin, fout);
+    s.el.style.display = o <= 0 ? "none" : "flex";
+    s.el.style.opacity = o;
+    s.el.style.transform = `translateY(${(1 - fin) * 36}px)`;
+  }
+  for (const e of enters) {
+    const p = ease(clamp((t - e.at) / 0.4, 0, 1));
+    e.el.style.opacity = p;
+    e.el.style.transform = `translateY(${(1 - p) * 44}px) scale(${0.97 + 0.03 * p})`;
+  }
+  for (const s of spans) {
+    const k = s.dataset.wi;
+    if (k === undefined) { s.className = s.className.replace(/\b(future|current|past)\b/g, "").trim(); continue; }
+    const w = W[k], nextStart = W[+k + 1] ? W[+k + 1].start : w.end + 0.3;
+    const state = t < w.start - 0.04 ? "future" : t < Math.min(nextStart, w.end + 0.25) ? "current" : "past";
+    s.classList.remove("future", "current", "past"); s.classList.add(state);
+    if (s.closest(".pop")) {
+      const p = ease(clamp((t - (w.start - 0.06)) / 0.22, 0, 1));
+      s.style.opacity = p;
+      s.style.transform = `translateY(${(1 - p) * 26}px)`;
+    }
+  }
+  // fallback captions: 2 to 4 unbound words around now
+  const now = W.findIndex(w => t >= w.start - 0.04 && t < w.end + 0.25);
+  const cap = document.getElementById("captions");
+  // only show the strip for a real run of off-screen narration (3+ words), not stray fillers
+  let run = 0; if (now >= 0) { let a = now, b = now; while (a > 0 && !bound.has(a - 1)) a--; while (b < W.length && !bound.has(b)) b++; run = bound.has(now) ? 0 : b - a; }
+  cap.textContent = run >= 3 ? W.slice(now, now + 3).filter((_, i) => !bound.has(now + i)).map(w => w.w).join(" ") : "";
+  // slow push-in for life
+  document.getElementById("stage").style.transform = `scale(${1 + 0.012 * (t / END)})`;
+}
+</script>
+</body>
+</html>
