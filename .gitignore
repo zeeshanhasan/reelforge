@@ -23,3 +23,11 @@ npm-debug.log*
 .DS_Store
 .idea/
 .vscode/
+
+# ReelForge local data (never shared between households)
+data/
+exports/
+*.sqlite
+*.sqlite3
+*.db
+spike/output/
