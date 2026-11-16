@@ -1,0 +1,7 @@
+# Prototype reel: voice (Kokoro via mlx-audio), word timings (mlx-whisper), rendering (Playwright)
+mlx-audio==0.6.5
+misaki[en]
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+soundfile
+mlx-whisper
+playwright

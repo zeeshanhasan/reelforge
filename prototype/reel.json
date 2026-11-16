@@ -1,0 +1,44 @@
+{
+  "slug": "which-answer-disagree-manager",
+  "topic": "Which answer would you give: disagreeing with your manager",
+  "voice": "af_heart",
+  "speed": 1.05,
+  "beats": [
+    {
+      "id": "hook",
+      "narration": "One interview question. Two answers. Only one gets the offer.",
+      "screen": "hook"
+    },
+    {
+      "id": "question",
+      "narration": "Tell me about a time you disagreed with your manager.",
+      "screen": "question"
+    },
+    {
+      "id": "answer_a",
+      "narration": "Answer A. I pushed back hard in the team meeting, and they agreed to wait. Sounds confident. But it says you fight in public.",
+      "screen": "answer_a"
+    },
+    {
+      "id": "answer_b",
+      "narration": "Answer B. Testing needed four weeks, not two. I asked for fifteen minutes one on one, showed the bugs from our last rushed release, and we shipped the core on time. No rollbacks.",
+      "screen": "answer_b"
+    },
+    {
+      "id": "why",
+      "narration": "B wins. Specific, calm, and it ends with a result.",
+      "screen": "why"
+    },
+    {
+      "id": "cta",
+      "narration": "Practise yours out loud with Prept, and get a score out of ten. Which would you give? Comment A or B.",
+      "screen": "cta"
+    }
+  ],
+  "post_text": {
+    "instagram": "One question. Two answers. Which one would you give? Comment A or B.\n\nPractise yours out loud and get a score out of 10 at prept.fyi\n\n#interviewtips #jobsearch #behavioralinterview #careeradvice #jobinterview",
+    "tiktok": "Which answer gets the offer? A or B 👇 #interviewtips #jobsearch #careertok",
+    "youtube_title": "Which answer gets the offer? Disagreeing with your manager",
+    "youtube_description": "Two answers to \"Tell me about a time you disagreed with your manager.\" One is specific, calm and ends with a result. Practise yours at prept.fyi"
+  }
+}

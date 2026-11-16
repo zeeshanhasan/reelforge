@@ -43,9 +43,12 @@ Update this section when the commands exist.
 
 - Python 3.11, managed with `uv`. FastAPI with server-rendered pages and HTMX.
 - SQLite for local state. One in-process worker renders one reel at a time.
-- ffmpeg assembles video, with captions as styled ASS subtitles.
-- Local AI: Ollama (script), mlx-audio with Kokoro (voice), mlx-whisper (word timings),
-  lip-sync model chosen by the spike (AI human), Playwright (demo capture).
+- Scenes are HTML rendered frame by frame in headless Chromium (Playwright); ffmpeg encodes
+  and adds audio. Captions are drawn in the scene (D-014), not as ffmpeg subtitles.
+- Local AI: mlx-audio with Kokoro (voice), mlx-whisper (word timings), Playwright (render and
+  demo capture). Script engine: Claude or a local model, still open (see tracker).
+- v1 is faceless and product-demo reels. No photoreal AI human (D-013).
+- Working prototype of one reel: `prototype/` (`./setup.sh`, then `./make_reel.sh`).
 - **Never** use Remotion (licence does not cover 4 users) or Docker (models need the GPU).
 - No paid service on the default path. Paid options sit behind an adapter, off by default.
 

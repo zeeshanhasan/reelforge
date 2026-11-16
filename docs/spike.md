@@ -1,11 +1,41 @@
 # spec-01 · AI-human spike results
 
-**Status:** Technical go. Waiting on the people test.
+**Status:** Done
 **Date:** 2026-11-16
-**Verdict:** **Go on speed and stability.** Final go needs two people who did not build it
-to say the face is acceptable (criterion 3).
+**Verdict:** **No-go for a full-screen photoreal AI human.** It passed on speed and
+stability, but failed the quality test: Zeeshan judged the sample not acceptable for
+commercial promotion. The mouth is visibly blurred and reads as AI-generated.
 
-## Summary
+## Decision and way forward
+
+- v1 ships **faceless and product-demo reels first** (D-013). The pipeline for these was
+  proven the same day with `prototype/` (see "Faceless prototype" below).
+- If a face comes back, it goes through the AI-human adapter, in this order of preference:
+  1. A small presenter box in a corner, with Prept graphics filling the rest of the screen.
+     At that size the 256 px mouth is shown near its real resolution, so the blur mostly
+     disappears.
+  2. A stylised mascot with drawn mouth shapes (for example Rhubarb Lip Sync). No uncanny
+     mouth, and the brand owns the art outright.
+  3. A consenting real person filmed once, lip-synced in fast-lipsync's real-mouth mode.
+  4. A paid avatar service.
+- Using footage of real people from the internet was ruled out, for testing and for
+  production.
+
+## Faceless prototype
+
+`prototype/` turns one script into a branded 1080x1920 reel on the same Air:
+
+| Step | Tool | Time |
+| --- | --- | --- |
+| Voice, per beat | Kokoro via mlx-audio | 9 to 51 s (first run in a new env is slower) |
+| Word timings | mlx-whisper `whisper-small.en`, 108 of 108 words matched | 4 s warm (63 s with the first download) |
+| Render | HTML scene in headless Chromium (Playwright), 1,186 frames piped to ffmpeg | 49 s |
+| Total | 39.6 s reel, H.264/AAC, -14.9 LUFS | About 2.5 minutes |
+
+Word-level timestamps from mlx-whisper are now **proven** on this Mac (an untested claim in
+spec-00).
+
+## Summary of the AI-human attempt
 
 A photoreal AI woman speaking a 30-second Prept script was made entirely on a fanless
 M5 MacBook Air with free tools. Once a base video exists, each 30-second talking clip takes
