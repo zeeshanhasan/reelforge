@@ -6,7 +6,7 @@ Released, Dropped. New spec number = highest below plus one.
 | Spec | Title | Status | Branch | Started | Released | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | [spec-00](spec-00-master.md) | Master build spec | Released | — | 2026-11-16 | 2026-11-16 | Overall reference, not built directly |
-| [spec-01](spec-01-ai-human-spike.md) | AI-human spike | Ready | — | — | — | M0. Blocks everything else. Needs the AI human's look decided before step 2 |
+| [spec-01](spec-01-ai-human-spike.md) | AI-human spike | In progress | spec-01-ai-human-spike | 2026-11-16 | — | M0. Blocks everything else. Needs the AI human's look decided before step 2 |
 | [spec-02](spec-02-app-skeleton.md) | App skeleton and design system | Draft | — | — | — | M1. Needs the design pick from getdesign.md |
 | [spec-03](spec-03-topics-script-engine.md) | Topics and script engine | Draft | — | — | — | M2 |
 | [spec-04](spec-04-first-full-reel.md) | First full reel: voice, captions, assembler | Draft | — | — | — | M3 |

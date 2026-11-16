@@ -1,6 +1,6 @@
 # spec-01 · AI-human spike
 
-**Status:** Ready
+**Status:** In progress
 **Milestone:** M0
 **Covers:** spec-00 section 4
 

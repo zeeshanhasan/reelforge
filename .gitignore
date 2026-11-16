@@ -31,3 +31,7 @@ exports/
 *.sqlite3
 *.db
 spike/output/
+
+# Spike environments and downloaded repos
+spike/envs/
+spike/vendor/
